@@ -1,54 +1,52 @@
-# Comparative Financial Viability Analysis: EFPS vs OTP
+# Comparative Financial Viability Analysis - EFPS vs OTP
+# Author: Sanika Shelar | Financial Management | Python
+# Academic Year: 2025
 
-A Major Project on Financial Management comparing two investment ventures using Capital Budgeting Techniques with Python Implementation.
+import numpy as np
+import matplotlib.pyplot as plt
 
-## 📊 Project Overview
-This project evaluates the financial viability of two proposals:
-- **EFPS (Eco-Friendly Packaging Solutions):** Investment Rs. 25,00,000 | WACC 12.00%
-- **OTP (Online Tutoring Platform):** Investment Rs. 15,00,000 | WACC 14.60%
+# ==============================
+# A. PROJECT DATA (Rs. in Lakhs)
+# ==============================
+years = np.array([1, 2, 3, 4, 5])
 
-## 🎯 Objectives
-- To calculate Cost of Capital (Kd, Ke, WACC)
-- To evaluate projects using NPV, PI, IRR, Payback Period
-- To automate financial analysis using Python
-- To recommend the most viable project
+eco_packaging = np.array([3.4, 6.0, 9.0, 12.0, 16.0])      # EFPS
+online_tutoring = np.array([1.9, 3.5, 5.0, 6.0, 7.5])      # OTP
 
-## 🛠️ Tech Stack
-- **Language:** Python
-- **IDE:** PyCharm
-- **Libraries:** Matplotlib, NumPy
-- **Concepts:** WACC, NPV, Profitability Index, IRR, Payback Period
+initial_investment = {
+    'Eco-Friendly Packaging': 15.0,
+    'Online Tutoring': 5.0
+}
+discount_rate = 0.12
 
-## 📈 Key Results
-| Metric | EFPS | OTP |
-| :--- | :--- | :--- |
-| NPV | Rs. 6,01,923 | Rs. 536 |
-| PI | 1.24 | 1.00 |
-| IRR | 19.29% | 14.61% |
-| Payback | 3.14 Years | 3.85 Years |
+# ==============================
+# B. NPV CALCULATION
+# ==============================
+def calculate_npv(cash_flows, initial, rate):
+    pv = sum(cf / ((1 + rate) ** (i+1)) for i, cf in enumerate(cash_flows))
+    return pv - initial
 
-**Conclusion:** EFPS is more financially viable with higher scalability and wealth creation.
+npv_eco = calculate_npv(eco_packaging, 15.0, discount_rate)
+npv_tutoring = calculate_npv(online_tutoring, 5.0, discount_rate)
 
-## 📁 Files in this Repo
-- `financial_analysis.py` - Python code for all calculations
-- `cash_flow_graph.png` - Comparative cash flow visualization
-- `Major_Project_Report.pdf` - Final project report
+print("="*50)
+print("FINANCIAL VIABILITY ANALYSIS")
+print("="*50)
+print(f"NPV Eco-Friendly Packaging: Rs. {npv_eco:.2f} Lakhs")
+print(f"NPV Online Tutoring: Rs. {npv_tutoring:.2f} Lakhs")
 
-## 👩‍💻 Author
-**Sanika Shelar**
-Financial Management | Python | Data Analysis
-Academic Year: 2025
-
----
-⭐ If you find this helpful, give it a star!
-## C. Matplotlib Output Window
-
-Projected Net Cash Flows Comparison (Rs. in Lakhs)
-
-![Figure A.1: Cash Flow Comparison](final_cashflow_chart.png)
-*Figure A.1: Screenshot of the Matplotlib figure window in PyCharm*
-
-### Analysis
-- **Blue Line (Eco-Friendly Packaging):** Shows exponential growth from Rs. 3.4L to Rs. 16L
-- **Orange Line (Online Tutoring):** Shows stable growth from Rs. 1.9L to Rs. 7.5L
-- **Conclusion:** EFPS gives higher returns in long term.
+# ==============================
+# C. GRAPH - Figure A.1
+# ==============================
+plt.figure(figsize=(10, 6))
+plt.plot(years, eco_packaging, marker='o', linewidth=2.5, label='Eco-Friendly Packaging', color='#1f77b4')
+plt.plot(years, online_tutoring, marker='s', linewidth=2.5, label='Online Tutoring', color='#ff7f0e')
+plt.title('Projected Net Cash Flows Comparison (Rs. in Lakhs)', fontsize=14, fontweight='bold')
+plt.xlabel('Year')
+plt.ylabel('Cash Flow (Lakhs)')
+plt.xticks(years)
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.tight_layout()
+plt.savefig('cashflow.png', dpi=300)  # Ye image README me use hogi
+plt.show()
