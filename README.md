@@ -41,3 +41,14 @@ Academic Year: 2025
 
 ---
 ⭐ If you find this helpful, give it a star!
+## C. Matplotlib Output Window
+
+Projected Net Cash Flows Comparison (Rs. in Lakhs)
+
+![Figure A.1: Cash Flow Comparison](final_cashflow_chart.png)
+*Figure A.1: Screenshot of the Matplotlib figure window in PyCharm*
+
+### Analysis
+- **Blue Line (Eco-Friendly Packaging):** Shows exponential growth from Rs. 3.4L to Rs. 16L
+- **Orange Line (Online Tutoring):** Shows stable growth from Rs. 1.9L to Rs. 7.5L
+- **Conclusion:** EFPS gives higher returns in long term.
